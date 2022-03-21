@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     const QList<QString> headers = {"Color", "Color name", "HEX", "R", "G", "B"};
     ui->tableWidget->setHorizontalHeaderLabels(headers);
 
+
     ui->tableWidget->setColumnWidth(0, 120);
     ui->tableWidget->setColumnWidth(1, 220);
     ui->tableWidget->setColumnWidth(2, 100);
@@ -209,7 +210,7 @@ void MainWindow::fill_columns()
     QFile myFile(path);
     if(!myFile.open(QFile::ReadOnly | QFile::Text))
     {
-        QMessageBox::information(this, "Error...", "the file was not opened");
+        QMessageBox::information(this, "Error message", "the file was not opened");
         return;
     }
 
