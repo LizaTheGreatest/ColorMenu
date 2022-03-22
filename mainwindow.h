@@ -25,15 +25,22 @@ public:
 private slots:
 
     void showColor();
+    void showColorHex();
     void refillColumns();
+
+    void on_radioButton_hex_clicked();
+
+    void on_radioButton_rgb_clicked();
 
 private:
     QList<QList<int>> rgbp;
     QList<int> rgbpPart;
+    QList<QString> colorsHEX;
 
     int userRed;
     int userGreen;
     int userBlue;
+    QString userHEX;
 
     int rowsInFile = 0;
 
@@ -48,6 +55,7 @@ private:
     int findColorPosition();
     void fillRow(int row, QString &line);
     void fill_columns();
+    void disableLineEdits(bool condition);
     int countRows();
     const QString path = "C:\\Users\\User\\Documents\\Qt\\ColorMenu\\colors.txt";
 };

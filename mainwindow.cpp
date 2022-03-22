@@ -11,11 +11,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(showColor()));
     connect(ui->pushButton_clear, SIGNAL(clicked()), this, SLOT(refillColumns()));
+//    connect(ui->lineEdit_hex, SIGNAL(editingFinished()), this, SLOT(showColorHex()));
+    connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(showColorHex()));
 
     ui->tableWidget->setColumnCount(6);
     const QList<QString> headers = {"Color", "Color name", "HEX", "R", "G", "B"};
     ui->tableWidget->setHorizontalHeaderLabels(headers);
-
 
     ui->tableWidget->setColumnWidth(0, 120);
     ui->tableWidget->setColumnWidth(1, 220);
@@ -28,9 +29,16 @@ MainWindow::MainWindow(QWidget *parent)
 //    ui->tableWidget->setFocusPolicy(Qt::NoFocus);
     ui->tableWidget->setSelectionMode(QAbstractItemView::NoSelection);
 
-
+    ui->radioButton_hex->click();
 
     fill_columns();
+    for(auto x : rgbp)
+    {
+        for(auto y : x)
+            qDebug()<<y<<" ";
+        qDebug()<<"\n";
+    }
+
 }
 
 MainWindow::~MainWindow()
@@ -112,6 +120,21 @@ void MainWindow::showColor()
     }
 }
 
+void MainWindow::showColorHex()
+{
+    userHEX = ui->lineEdit_hex->text();
+    for(int i = 0; i < rowsInFile; ++i)
+    {
+        if(colorsHEX[i].contains(userHEX))
+        {
+            if(ui->tableWidget->isRowHidden(i))
+                ui->tableWidget->showRow(i);
+        }
+        else ui->tableWidget->hideRow(i);
+    }
+
+}
+
 void MainWindow::refillColumns()
 {
     for(int i = 0; i < rowsInFile; i++)
@@ -120,8 +143,6 @@ void MainWindow::refillColumns()
     ui->lineEdit_green->clear();
     ui->lineEdit_blue->clear();
 }
-
-
 
 void MainWindow::fillRow(int row, QString &line)
 {
@@ -132,7 +153,6 @@ void MainWindow::fillRow(int row, QString &line)
         symb = x;
         if(symb == ':')
         {
-
             counter++;
             continue;
         }
@@ -171,12 +191,12 @@ void MainWindow::fillRow(int row, QString &line)
             default: break;
         }
     }
-
+    colorsHEX.push_back(hex);
     rgbpPart.push_front(row);
     rgbpPart.push_front(blue.toInt());
     rgbpPart.push_front(green.toInt());
-    rgbpPart.push_front(red.toInt());
-    rgbp.push_front(rgbpPart);
+    rgbpPart.push_front(red.toInt());    
+    rgbp.push_back(rgbpPart);
     rgbpPart.clear();
 
     color.setRgb(red.toInt(), green.toInt(), blue.toInt());
@@ -234,7 +254,18 @@ void MainWindow::fill_columns()
 
 }
 
+void MainWindow::disableLineEdits(bool condition)
+{
+    ui->lineEdit_hex->setDisabled(!condition);
+    ui->lineEdit_red->setDisabled(condition);
+    ui->lineEdit_green->setDisabled(condition);
+    ui->lineEdit_blue->setDisabled(condition);
+    refillColumns();
+}
 
 
+void MainWindow::on_radioButton_hex_clicked(){disableLineEdits(false);}
 
+
+void MainWindow::on_radioButton_rgb_clicked(){disableLineEdits(true);}
 
