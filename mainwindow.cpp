@@ -24,6 +24,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget->setColumnWidth(4, 70);
     ui->tableWidget->setColumnWidth(5, 70);
 
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+//    ui->tableWidget->setFocusPolicy(Qt::NoFocus);
+    ui->tableWidget->setSelectionMode(QAbstractItemView::NoSelection);
+
 
 
     fill_columns();
@@ -177,6 +181,7 @@ void MainWindow::fillRow(int row, QString &line)
 
     color.setRgb(red.toInt(), green.toInt(), blue.toInt());
     QTableWidgetItem *itm_color = new QTableWidgetItem();
+//    itm_color->setFlags(itm_color->flags() ^ Qt::ItemIsEditable);
     QTableWidgetItem *color_name = new QTableWidgetItem();
     QTableWidgetItem *hex = new QTableWidgetItem();
     QTableWidgetItem *red = new QTableWidgetItem();

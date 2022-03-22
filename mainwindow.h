@@ -35,7 +35,6 @@ private:
     int userGreen;
     int userBlue;
 
-
     int rowsInFile = 0;
 
     Ui::MainWindow *ui;
