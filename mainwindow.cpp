@@ -9,10 +9,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->setupUi(this);
 
-    connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(showColor()));
+
     connect(ui->pushButton_clear, SIGNAL(clicked()), this, SLOT(refillColumns()));
-//    connect(ui->lineEdit_hex, SIGNAL(editingFinished()), this, SLOT(showColorHex()));
-    connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(showColorHex()));
+
+
 
     ui->tableWidget->setColumnCount(6);
     const QList<QString> headers = {"Color", "Color name", "HEX", "R", "G", "B"};
@@ -32,12 +32,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->radioButton_hex->click();
 
     fill_columns();
-    for(auto x : rgbp)
-    {
-        for(auto y : x)
-            qDebug()<<y<<" ";
-        qDebug()<<"\n";
-    }
+//    for(auto x : rgbp)
+//    {
+//        for(auto y : x)
+//            qDebug()<<y<<" ";
+//        qDebug()<<"\n";
+//    }
 
 }
 
@@ -264,8 +264,22 @@ void MainWindow::disableLineEdits(bool condition)
 }
 
 
-void MainWindow::on_radioButton_hex_clicked(){disableLineEdits(false);}
+void MainWindow::on_radioButton_hex_clicked()
+{
+    disconnect(ui->pushButton, SIGNAL(clicked()), this, SLOT(showColor()));
+    connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(showColorHex()));
+    disableLineEdits(true);
+    ui->lineEdit_blue->clear();
+    ui->lineEdit_green->clear();
+    ui->lineEdit_red->clear();
+}
 
 
-void MainWindow::on_radioButton_rgb_clicked(){disableLineEdits(true);}
+void MainWindow::on_radioButton_rgb_clicked()
+{
+    disconnect(ui->pushButton, SIGNAL(clicked()), this, SLOT(showColorHex()));
+    connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(showColor()));
+    ui->lineEdit_hex->clear();
+    disableLineEdits(false);
+}
 
