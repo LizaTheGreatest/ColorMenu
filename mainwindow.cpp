@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QMessageBox>
+#include <QClipboard>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -9,10 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->setupUi(this);
 
-
     connect(ui->pushButton_clear, SIGNAL(clicked()), this, SLOT(refillColumns()));
-
-
 
     ui->tableWidget->setColumnCount(6);
     const QList<QString> headers = {"Color", "Color name", "HEX", "R", "G", "B"};
@@ -31,14 +29,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->radioButton_hex->click();
 
-    fill_columns();
-//    for(auto x : rgbp)
-//    {
-//        for(auto y : x)
-//            qDebug()<<y<<" ";
-//        qDebug()<<"\n";
-//    }
 
+    fill_columns();
 }
 
 MainWindow::~MainWindow()
@@ -281,5 +273,16 @@ void MainWindow::on_radioButton_rgb_clicked()
     connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(showColor()));
     ui->lineEdit_hex->clear();
     disableLineEdits(false);
+}
+
+
+void MainWindow::on_tableWidget_itemDoubleClicked(QTableWidgetItem *item)
+{
+    if(item->column() == 2)
+    {
+        QClipboard *clipboard = QGuiApplication::clipboard();
+        QString hexVal = ui->tableWidget->item(item->row(), 2)->text();
+        clipboard->setText(hexVal);
+    }
 }
 

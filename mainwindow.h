@@ -32,6 +32,11 @@ private slots:
     void on_radioButton_hex_clicked();
 
     void on_radioButton_rgb_clicked();
+//    void mouseDoubleClickEvent(QMouseEvent *event) override;
+
+//    void on_tableWidget_doubleClicked(const QModelIndex &index);
+
+    void on_tableWidget_itemDoubleClicked(QTableWidgetItem *item);
 
 private:
     QList<QList<int>> rgbp;
