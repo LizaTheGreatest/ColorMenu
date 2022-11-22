@@ -10,13 +10,16 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    searchfilter.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    searchfilter.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    searchfilter.ui
 
 win32::RC_FILE = icon_file.rc
 

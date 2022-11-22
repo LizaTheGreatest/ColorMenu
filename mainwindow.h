@@ -10,6 +10,7 @@
 #include <QList>
 #include <QMouseEvent>
 #include <QBuffer>
+#include <QFormLayout>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

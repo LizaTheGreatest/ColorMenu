@@ -19,6 +19,10 @@
   <property name="windowTitle">
    <string>Color Menu</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background: rgb(255, 255, 255
+)</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
@@ -47,6 +51,9 @@
                <font>
                 <pointsize>11</pointsize>
                </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true"/>
               </property>
               <property name="text">
                <string>Search by</string>
@@ -104,8 +111,8 @@
            <property name="frameShadow">
             <enum>QFrame::Raised</enum>
            </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_3">
-            <item>
+           <layout class="QGridLayout" name="gridLayout">
+            <item row="0" column="1">
              <widget class="QLabel" name="label">
               <property name="toolTip">
                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -115,34 +122,13 @@
               </property>
              </widget>
             </item>
-            <item>
-             <widget class="QLineEdit" name="lineEdit_red">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_2">
-              <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;G&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-             </widget>
-            </item>
-            <item>
+            <item row="0" column="2">
              <widget class="QLineEdit" name="lineEdit_green"/>
             </item>
-            <item>
-             <widget class="QLabel" name="label_3">
-              <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;B&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-             </widget>
-            </item>
-            <item>
+            <item row="0" column="4">
              <widget class="QLineEdit" name="lineEdit_blue"/>
             </item>
-            <item>
+            <item row="0" column="6">
              <widget class="QFrame" name="frame_2">
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
@@ -153,6 +139,9 @@
               <layout class="QHBoxLayout" name="horizontalLayout_2">
                <item>
                 <widget class="QPushButton" name="pushButton">
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
                  <property name="text">
                   <string>find</string>
                  </property>
@@ -160,12 +149,36 @@
                </item>
                <item>
                 <widget class="QPushButton" name="pushButton_clear">
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
                  <property name="text">
                   <string>clear</string>
                  </property>
                 </widget>
                </item>
               </layout>
+             </widget>
+            </item>
+            <item row="0" column="3">
+             <widget class="QLabel" name="label_2">
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;G&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLineEdit" name="lineEdit_red">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="5">
+             <widget class="QLabel" name="label_3">
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;B&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
              </widget>
             </item>
            </layout>
@@ -196,6 +209,10 @@
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: rgb(255, 255, 255
+)</string>
       </property>
      </widget>
     </item>

@@ -192,6 +192,9 @@ void MainWindow::fillRow(int row, QString &line)
     rgbpPart.clear();
 
     color.setRgb(red.toInt(), green.toInt(), blue.toInt());
+
+
+
     QTableWidgetItem *itm_color = new QTableWidgetItem();
 //    itm_color->setFlags(itm_color->flags() ^ Qt::ItemIsEditable);
     QTableWidgetItem *color_name = new QTableWidgetItem();
