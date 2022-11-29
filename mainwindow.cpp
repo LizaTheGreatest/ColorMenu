@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->setupUi(this);
 
-    connect(ui->pushButton_clear, SIGNAL(clicked()), this, SLOT(refillColumns()));
+    connect(ui->pushButton_clear, &QPushButton::clicked, this, &MainWindow::refillColumns);
 
     ui->tableWidget->setColumnCount(6);
     const QList<QString> headers = {"Color", "Color name", "HEX", "R", "G", "B"};

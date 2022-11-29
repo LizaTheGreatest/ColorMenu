@@ -16,7 +16,7 @@ public:
     ~SearchFilter();
 
 private slots:
-    void setNegotiability(const bool condition);
+    void setNegotiability(bool disable);
 private:
     Ui::SearchFilter *ui;
 };

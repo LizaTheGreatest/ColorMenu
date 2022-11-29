@@ -6,8 +6,12 @@ SearchFilter::SearchFilter(QWidget *parent) :
     ui(new Ui::SearchFilter)
 {
     ui->setupUi(this);
-    connect(ui->HEXRadioButton, SIGNAL(clicked()), this, SLOT(setNegotiability(true)));
-    connect(ui->RGBRadioButton, SIGNAL(clicked()), this, SLOT(setNegotiability(false)));
+    connect(ui->HEXRadioButton, &QRadioButton::clicked, [this]
+    {
+        setNegotiability(true);
+
+    });
+    connect(ui->RGBRadioButton, &QRadioButton::clicked, [this]{ setNegotiability(false); });
     ui->HEXRadioButton->click();
 }
 
@@ -16,11 +20,11 @@ SearchFilter::~SearchFilter()
     delete ui;
 }
 
-void SearchFilter::setNegotiability(const bool condition)
+void SearchFilter::setNegotiability(bool disable)
 {
-    ui->redLineEdit->setDisabled(condition);
-    ui->greenLineEdit->setDisabled(condition);
-    ui->blueLineEdit->setDisabled(condition);
-    ui->hexLineEdit->setDisabled(!condition);
+    ui->redLineEdit->setDisabled(disable);
+    ui->greenLineEdit->setDisabled(disable);
+    ui->blueLineEdit->setDisabled(disable);
+    ui->hexLineEdit->setDisabled(!disable);
 }
 
